@@ -1,0 +1,10 @@
+{
+   "tkn":
+   	"gfsVdgP0tQYAAAAAAAAAAQ9ks-Wi-fb8PzJ4pyxxbVRavzE-97fsG7_1Ppdls-vZ",
+   "weather":{
+   	"read":"/raw_data/weather_raw",
+   	"copy":"/data_processed/weather_processed",
+   	"temp":"/data_temp/weather_temp",
+   	"clean":"/clean_data/weather_clean"
+   }
+}
