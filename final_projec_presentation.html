@@ -4,307 +4,316 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>Purdue</title>
 
-		<link rel="stylesheet" href="dist/reset.css">
-		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/black.css" id="theme">
+		<link rel="stylesheet" href="/home/luis/Insync/lvargasr@purdue.edu/OneDrive Biz/Presentations/reveal.js/dist/reset.css">
+		<link rel="stylesheet" href="/home/luis/Insync/lvargasr@purdue.edu/OneDrive Biz/Presentations/reveal.js/dist/reveal.css">
+		<link rel="stylesheet" href="/home/luis/Insync/lvargasr@purdue.edu/OneDrive Biz/Presentations/reveal.js/dist/theme/black.css" id="theme">
 
 		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+		<link rel="stylesheet" href="/home/luis/Insync/lvargasr@purdue.edu/OneDrive Biz/Presentations/reveal.js/plugin/highlight/monokai.css" id="highlight-theme">
 	</head>
 	<body>
 		<div class="reveal">
 			<div class="slides">
 			  
+				
+				<! -- First slide -->
+
 				<section>
 				  
-				  <a href="https://ag.purdue.edu/agry/Pages/default.aspx">
-						<img src="https://ag.purdue.edu/SiteAssets/images/Purdue-logo-header_feb_2020.svg" style="height: 60px; margin: 0 auto 4rem auto; background: transparent;" class="demo-logo">
-					</a>
-	  
-				  <a href="https://www.cimmyt.org/">
-						<img src="http://logovectorseek.com/wp-content/uploads/2020/04/international-maize-and-wheat-improvement-center-cimmyt-logo-vector.png" style="height: 100px; margin: 0 auto 4rem auto; background: transparent;" class="demo-logo">
+					<a href="https://ag.purdue.edu/agry/Pages/default.aspx">
+						
+						<img src="https://ag.purdue.edu/SiteAssets/images/Purdue-logo-header_feb_2020.svg" style="height: 70px; margin: 0 auto 4rem auto; background: transparent;" class="demo-logo">
 					</a>
 				    				  
-				  <h3>Testing remote-sensed data in crop simulations with the view to increase general availability and accessibility of inputs to crop models and boost scale-out
-				  </h3>
-				  <a>
-						<small>Luis Vargas Rojas</small>
-				  </a>
-				  <p><small>April 08, 2021</small></p>
+					<h5 >
+					    Data flow for testing remote-sensed data in crop simulations with the view to increase general availability and accessibility of inputs to crop models and boost scale-out
+					</h5>
+
+					<p style="font-size:30px"><a>Luis Vargas Rojas</a></p>
+
+					<p style="font-size:30px">
+
+						<span class="fragment visible current-fragment" style="color:#ffcc80">April 30, 2021</span> 
+				    
+					</p>
 				   
 				</section>
-				    
+				
+				<! -- / First slide -->  
+
+
+				<! -- / Advisors --> 
+
 				<section>
 				  
-				  <h2>Advisors</h2>
+					<h3>Advisors</h3>
 				  
-				  <p class="fragment visible current-fragment">
-						<a>Dr. Davide Cammarano</a>, Purdue University
+					<p class="fragment visible current-fragment">
+						<span style="color:#ffcc80">Dr. Davide Cammarano</span>, Purdue University
 					</p>
 				  
-				  <p class="fragment visible current-fragment">
-						<a>Dr. Diane R. Wang</a>, Purdue University
+					<p class="fragment visible current-fragment">
+						<span style="color:#ffcc80">Dr. Diane R. Wang</span>, Purdue University
 					</p>
 				  
-				  <p class="fragment visible current-fragment">
-						<a>Dr. Matthew Reynolds</a>, , Global Wheat Program, CIMMYT
+					<p class="fragment visible current-fragment">
+						<span style="color:#ffcc80">Dr. Matthew Reynolds</span>, Global Wheat Program, CIMMYT
 					</p>			  
 				  
 				</section>
 				      
-				<section data-background="#FFFFFF">
-				  
-				  <h4>Introduction</h4>
-				  <p>  
-					  <img src="./images/diagram.png" style="height: 600px; margin: 0 auto 4rem auto; background: transparent;" class="demo-logo">
-				  </p>
-				    
-				</section>
-				  
+				<! -- / Advisors --> 
+
+
+				<! -- / Project description --> 
+    
 				<section>
+
 				  
-				  <h4>Objectives</h4>
+					<section data-background="#FFFFFF">
+					    
+						<h5>Project description</h5>
+						    
+						<p>  
+							<img src="./images/diagram.png" style="height: 600px; margin: 0 auto 4rem auto; background: transparent;" class="demo-logo">
+						</p>	  
+					  
+					</section>
+
+
+
+					<section>
+
+						<a href="https://dssat.net/">
+						
+							<img src="https://www.quantitative-plant.org/content/4-model/88-DSSAT/DSSAT.png" style="height: 70px; margin: 0 auto 4rem auto; background: transparent;" class="demo-logo">
+						</a>
+
+
+						<h4>Data input</h4>
+						
+								    
+						<p style="font-size:40px">
+							<span class="fragment visible current-fragment" style="color:#ffcc80"> Weather data:</span><span class="fragment visible current-fragment"> site weather data for the duration of the growing season</span>
+						</p>
+
+
+						    
+						<p>
+							<span class="fragment visible current-fragment" style="color:#ffcc80">Soil data:</span><span class="fragment visible current-fragment"> soil surface characteristics and soil profile data</span>
+						</p>
+
+
+						    
+						<p>
+							<span class="fragment visible current-fragment" style="color:#ffcc80">Management and experimental data:</span><span class="fragment visible current-fragment"> crop management from the experiment </span>
+						</p>
+
+
+					  
+					</section>
+
+
+					<section >
 				  
-				  <p class="fragment visible current-fragment">
-						Understanding how best to apply <a>remote sensing</a> techniques for <a>crop modeling</a> 
-				    to enable the systematic parameterization of large collections of genotypes.
-					</p>
-				  
-				  <ul>
-						<li class="fragment visible current-fragment">
-						  <p style="font-size:33px">Determine the minimum dataset of 
-						  vegetation indices required for accurate simulations.</p></li>
-						<li class="fragment visible current-fragment">
-						  <p style="font-size:33px">Improve crop model formalisms for 
-						  water transport and energy balance.</p></li>
-						<li class="fragment visible current-fragment">
-						  <p style="font-size:33px">Apply RS on larger breeding populations 
-						  to scale out model parameterization and testing.</p></li>
-					</ul>		  
-				  
-				</section>
-				  
-			  <section >
-			    
-			    <section >
-				  
-				    <h4>The experiment</h4>
-			      <a href="https://www.cgiar.org/">
-						  <small>Consultative Group on International Agriculture Research</small>
-				    </a>
-				    <p>  
-					    <img src="./images/CGIAR-Centers-map-ENG.png" style="margin: 0 auto 4rem auto; background: transparent;" class="demo-logo">
-				    </p>
-				      
-				  </section>
+						<h4>The experiment</h4>
 			      
-			    <section >
-			      <a href="https://www.cimmyt.org/">
-						  <small>International Maize and Wheat Improvement Center (CIMMYT) </small>
-				    </a>
-			      <a href="https://mlz0380yrnuq.i.optimole.com/4DxTMcw.TNP4~54d1d/w:auto/h:auto/q:auto/https://www.cimmyt.org/content/uploads/2019/03/CIMMYTAAG_forWeb.jpg"> 
-					    <img src="./images/CIMMYTAAG_forWeb.jpg" style="height: 650px; margin: 0 auto 4rem auto; background: transparent;" class="demo-logo">
-				    </a>
+			      		<a href="https://www.cgiar.org/">
+							<span style="color:#77bd43" style="font-size:30px">Consultative Group on International Agriculture Research</spam>
+				    		</a>
+
+					    	<p>  
+							<img src="./images/CGIAR-Centers-map-ENG.png" style="margin: 0 auto 4rem auto; background: transparent;" class="demo-logo">
+					    	</p>
+				      
+				  	</section>
+
+			      
+					<section >
+
+				      	<a href="https://mlz0380yrnuq.i.optimole.com/4DxTMcw.TNP4~54d1d/w:auto/h:auto/q:auto/https://www.cimmyt.org/content/uploads/2019/03/CIMMYTAAG_forWeb.jpg"> 
+							<img src="./images/CIMMYTAAG_forWeb.jpg" style="height: 650px; margin: 0 auto 4rem auto; background: transparent;" class="demo-logo">
+						</a>
+				          
+					</section>
+			      
+					<section data-background="#FFFFFF">
+						  
+					      <a href="https://www.cimmyt.org/">
+							<span style="color:#77bd43" style="font-size:30px">International Maize and Wheat Improvement Center (CIMMYT) </span>
+						</a>
+						    
+					      <img src="./images/Mexico_stations_map.png" style="height: 600px; background: transparent;">
+						      
+					</section>
+
+			    
+			    		
+			    		<section >
+			      
+					      <h4>The experiment</h4>
+						    
+					      <img src="./images/ceneb.png" style="height: 300px; background: transparent;">
+					      
+					      <p style="font-size:30px">Population of contrasting genotypes grown in
+					         plots under three different environments: optimal, water stressed and heat stressed conditions.
+					      </p> 
+					         
+					      <ul>
+						
+							<li class="fragment visible current-fragment">
+								<p style="font-size:30px">Autumn-Winter 2021-2022</p>
+							</li>
+
+							<li class="fragment visible current-fragment">
+								<p style="font-size:30px">Autumn-Winter 2022-2023</p>
+							</li>
+					  	</ul>		 
+			        
 			          
-				  </section>
-			      
-			    <section >
-				  
-			      <a href="https://www.cimmyt.org/">
-						  <small>International Maize and Wheat Improvement Center (CIMMYT) </small>
-				    </a>
-				    
-			      <img src="./images/Mexico_stations_map.png" style="height: 300px; background: transparent;">
-			        
-					  <img src="./images/history_19343880328_4771ec831a_o.jpg" style="height: 300px;  background: transparent;">
-				      
-				  </section>
-			    
-			    <section >
-			      
-			      <h4>The experiment</h4>
-				    
-			      <img src="./images/ceneb.png" style="height: 300px; background: transparent;">
-			      
-			      <p style="font-size:30px">Population of contrasting genotypes grown in
-			         plots under three different environments: optimal, water stressed and heat stressed conditions.
-			      </p> 
-			         
-			      <ul>
-						  <li>
-						    <p style="font-size:25px">Autumn-Winter 2021-2022</p></li>
-						  <li>
-						    <p style="font-size:25px">Autumn-Winter 2022-2023</p></li>
-					  </ul>		 
-			        
-			          
-				  </section> 
-				    
-				</section>
-			        
-			  <section>
-				  
-				  <section>
-				  
-				    <h4>Data to collect</h4>
-				    
-				    <p class="fragment visible current-fragment">
-						  <a>Weather Daily Minimum and maximum temperature</a> 
-					  </p>
-				    
-				    <ul>
-						  <li class="fragment visible current-fragment">
-						    <p style="font-size:33px">Daily total precipitation</p></li>
-						  <li class="fragment visible current-fragment">
-						    <p style="font-size:33px">Dewpoint temperature or relative humidity</p></li>
-						  <li class="fragment visible current-fragment">
-						    <p style="font-size:33px">Total solar radiation or sunshine hours</p></li>
-				      <li class="fragment visible current-fragment">
-						    <p style="font-size:33px">Average daily wind speed or daily wind run</p></li>
-					  </ul>		  
-				    
-				  </section>	
-			    
-			    <section>
-				      
-				      <p class="fragment visible current-fragment">
-						    <a>Soil characteristics</a>
-					    </p>
-				      
-				      <ul>
-				        
-						    <li class="fragment visible current-fragment">
-						      <p style="font-size:33px">Soil taxonomy</p>
-						    </li>
-				        
-						    <li class="fragment visible current-fragment">
-						      <p style="font-size:33px">Bulk density</p
-						    </li>
-				        
-					    </ul>	
-			      
-			        <p class="fragment visible current-fragment">
-						      <a>Initial soil profiles conditions</a> 
-					      </p>
-				        
-				        <ul>
-				          
-						      <li class="fragment visible current-fragment">
-						        <p style="font-size:33px">Initial soil moisture</p>
-						      </li>
-				          
-						      <li class="fragment visible current-fragment">
-						        <p style="font-size:33px">Initial nutrients (NO3)</p
-						      </li>
-				          
-					      </ul>			  
-				      
-				    </section>	
-			    
-			      <section>
-				        
-			          <p class="fragment visible current-fragment">
-					        <a>Management Data</a>
-				        </p>
-		          
-		            <p class="fragment visible current-fragment">
-					        <a>Yield Components</a>
-				        </p>
-		          
-		            <p class="fragment visible current-fragment">
-					        <a>Growth analysis measurements</a>
-				        </p>
-		          
-		            <p class="fragment visible current-fragment">
-					        <a>Soil water content</a>
-				        </p>
-		          
-		            <p class="fragment visible current-fragment">
-					        <a>Soil fertility</a>
-				        </p> 
-			        
-			      </section>
-			    
-			      <section>
-				      
-				        <p class="fragment visible current-fragment">
-						      <a>Remote and proximal sensing</a>
-					      </p>
-				        
-				        <ul>
-				          
-						      <li class="fragment visible current-fragment">
-						        <p style="font-size:33px">Multispectral images</p>
-						      </li>
-				          
-						      <li class="fragment visible current-fragment">
-						        <p style="font-size:33px">NDVI</p
-						      </li>
-				          
-				          <li class="fragment visible current-fragment">
-						        <p style="font-size:33px">Canopy temperature</p
-						      </li>
-				          
-				          <li class="fragment visible current-fragment">
-						        <p style="font-size:33px">Leaf area index</p
-						      </li>
-				          
-				          <li class="fragment visible current-fragment">
-						        <p style="font-size:33px">SPAD</p
-						      </li>
-				          
-					      </ul>	
-			      
-				      </section>	
+				 	 </section> 
+
+
 
 				</section>
-			        
-			        
-			  <section>
-			    
-			        <h4>Project progress</h4>
-				      
-				      <p>
-						    <a>Literature review</a>
-					    </p>
-				      
-				      <ul>
-				        
-						    <li>
-						      <p style="font-size:33px">Crop Modeling</p>
-						    </li>
-				        
-					    </ul>	
-			      
-			        <p>
-					      <a>Data processing automation </a> 
-				      </p>
-				        
-				      <img src="./images/ETL.png" style="height: 400px; background: transparent;">    
-				      
-				  </section>
-			    
-			    <section>
-			      
-			        <p>
-					      <a>Thank you for your attention!</a> 
-				      </p>
-				        
-				      <img src="./images/CIMMYT_1.jpg" style="height: 400px; background: transparent;">    
-				      
-				  </section>
+
+				<! -- / Project description --> 
+
+
+
+
+
+				<! -- / Source data --> 
+    
+				<section>
+
 				  
-				    
+					<section >
+					    
+						<h5>Source data</h5>
+						    
+						<p>  
+							<img src="./images/remas_map.png" style="height: 600px; margin: 0 auto 4rem auto; background: transparent;" class="demo-logo">
+						</p>	  
+					  
+					</section>
+
+
+					<section >
+					    
+						<h5>Automatic weather station</h5>
+						    
+						<p>  
+							<img src="./images/remas_ciano_110.png" style="height: 600px; margin: 0 auto 4rem auto; background: transparent;" class="demo-logo">
+						</p>	  
+					  
+					</section>
+
+
+
+					<section>
+
+
+						<h4>Weather Data</h4>						
+
+						<p style="font-size: 35px">Comma-separated values (CSV) files, recorded with a one-hour frequency, 8650 observations</p>
+
+						<ul>
+						
+							<li class="fragment visible current-fragment">
+								<p style="font-size: 35px; color:#ffcc80">Maximum and minimum air temperature (ºC)</p>
+							</li>
+
+							<li class="fragment visible current-fragment">
+								<p style="font-size: 35px; color:#ffcc80">Solar radiation (W/m2)</p>
+							</li>
+
+							<li class="fragment visible current-fragment">
+								<p style="font-size: 35px; color:#ffcc80">Total rainfall (mm)</p>
+							</li>
+
+							<li class="fragment visible current-fragment">
+								<p style="font-size: 35px; color:#ffcc80">Humidity (%)</p>
+							</li>
+
+							<li class="fragment visible current-fragment">
+								<p style="font-size: 35px; color:#ffcc80">Wind speed (km/h)</p>
+							</li>
+
+							<li class="fragment visible current-fragment">
+								<p style="font-size: 35px; color:#ffcc80">Evapotranspiration (mm)</p>
+							</li>
+
+							<li class="fragment visible current-fragment">
+								<p style="font-size: 35px">Atmospheric pressure</p>
+							</li>
+
+							<li class="fragment visible current-fragment">
+								<p style="font-size: 35px">Wind direction</p>
+							</li>
+
+					  	</ul>
+
+					  
+					</section>
+
+
+				</section>
+
+				<! -- / Source data --> 
+
+
+				<! -- /  Methodology --> 
+    
+				<section>
+
+				  
+					<section data-background="#FFFFFF">
+					    
+						<h5>Methodology</h5>
+						    
+						<p>  
+							<img src="./images/ETL.png" style="height: 600px; margin: 0 auto 4rem auto; background: transparent;" class="demo-logo">
+						</p>	  
+					  
+					</section>
+
+
+					<section data-background="#FFFFFF">
+					    
+						<h6>Extraction process</h6>
+						    
+						<p>  
+							<img src="./images/Extract.png" style="height: 300px; margin: 0 auto 4rem auto; background: transparent;" class="demo-logo">
+						</p>	  
+					  
+					</section>
+
+					<section data-background="#FFFFFF">
+					    
+						<h6>Transformation process</h6>
+						    
+						<p>  
+							<img src="./images/transform.png" style="height: 600px; margin: 0 auto 4rem auto; background: transparent;" class="demo-logo">
+						</p>	  
+					  
+					</section>
+
+				</section>
+
+				<! -- / Methodology --> 
+
+
 				    
 			</div>
 		</div>
 
-		<script src="dist/reveal.js"></script>
-		<script src="plugin/notes/notes.js"></script>
-		<script src="plugin/markdown/markdown.js"></script>
-		<script src="plugin/highlight/highlight.js"></script>
+		<script src="/home/luis/Insync/lvargasr@purdue.edu/OneDrive Biz/Presentations/reveal.js/dist/reveal.js"></script>
+		<script src="/home/luis/Insync/lvargasr@purdue.edu/OneDrive Biz/Presentations/reveal.js/plugin/notes/notes.js"></script>
+		<script src="/home/luis/Insync/lvargasr@purdue.edu/OneDrive Biz/Presentations/reveal.js/plugin/markdown/markdown.js"></script>
+		<script src="/home/luis/Insync/lvargasr@purdue.edu/OneDrive Biz/Presentations/reveal.js/plugin/highlight/highlight.js"></script>
 		<script>
 			// More info about initialization & config:
 			// - https://revealjs.com/initialization/

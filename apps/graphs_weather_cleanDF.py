@@ -1,6 +1,12 @@
 # -*- coding: utf-8 -*-
+'''
+Created on April 2021
+@author: luis vargas rojas (lvargasr@purdue.edu)
+Spring 2021 ABE 65100 - Final project
+'''
+# App that builds graphs from weather data after the cleaning process
 
-# Run this app with `python app.py` and
+# Run this app with `python graphs_weather_cleanDF.py` and
 # visit http://127.0.0.1:8050/ in your web browser.
 
 import dash
@@ -13,8 +19,6 @@ import dash_table
 import pandas as pd
 import json
 
-import sys
-sys.path.insert(0,'/home/luis/airflow/dags/remote_sensing/etl_weather/')
 import functions
 
 
@@ -24,7 +28,7 @@ app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
 
 # read from json file the Token for accessing Dropbox files
-path_file_json = '/home/luis/airflow/dags/remote_sensing/etl_weather/config_file.json'
+path_file_json = '../config_file.json'
 ACCESS_TOKEN = json.load(open(path_file_json))['tkn']
 
 # Dropbox directory where the concatenated dataframe is stored
@@ -53,7 +57,7 @@ app.layout = html.Div([
         html.H3('Graphical exploratory analysis')
     ), style={'width': '49%', 'padding': '0px 40px 0px 20px'}),
 
-    # menu seasons
+    # show the seasons menu
     html.Div(["Select season: ",
         dcc.Dropdown(
                   id='seasons_column',
@@ -61,7 +65,7 @@ app.layout = html.Div([
                   value=seasons_list[0])
     ],style={'width': '30%', 'display': 'inline-block', 'padding': '0px 20px 0px 50px'}),
 
-    # menu variables
+    # show the variables menu
     html.Div(["Select variable: ",
         dcc.Dropdown(
                   id='yaxis_column',
@@ -71,38 +75,49 @@ app.layout = html.Div([
 
     html.Br(),
 
-    # All variables graph
+    # show the graph that can plot all the variables
     html.Div((
         dcc.Graph(
             id = 'variables-graphic'
         )
     ), style={'width': '70%', 'padding': '0px 20px 20px 20px'}),
 
-    # Temperature max and min Block 910
+    # Show the max and min temperature plot from of Block 910 station data
     html.Div([
         dcc.Graph(
             id = 'temperature-910'
         )
     ], style={'width': '70%', 'display': 'inline-block', 'padding': '0px 20px 0px 50px'}),
 
-    # Histogram
+    # Show the histogram
     html.Div((
         dcc.Graph(
             id='histogram'
         )
     ), style={'width': '70%', 'display': 'inline-block', 'padding': '0px 20px 0px 50px'}),
 
-    # Table
+    # show the table with the missing data count
     html.Div((
-        dash_table.DataTable(
-            id='table',
-            columns=[{"name": i, "id": i}
-                     for i in sum_missingDF.columns],
-            data=sum_missingDF.to_dict('records'),
-            style_cell=dict(textAlign='left'),
-            style_header=dict(backgroundColor="paleturquoise"),
-            style_data=dict(backgroundColor="lavender")
-        )
+         dash_table.DataTable(
+             id='table_missing_val',
+             columns=[{"name": i, "id": i}
+                      for i in sum_missingDF.columns],
+             export_format="csv",
+             style_cell={
+                 'textAlign': 'left',
+                 'font_size': '20px'
+             },
+             style_data_conditional=[
+                 {
+                     'if': {'row_index': 'odd'},
+                     'backgroundColor': 'rgb(248, 248, 248)'
+                 }
+             ],
+             style_header={
+                 'backgroundColor': 'rgb(230, 230, 230)',
+                 'fontWeight': 'bold'
+             }
+         )
     ), style={'width': '70%', 'display': 'inline-block', 'padding': '0px 20px 0px 50px'})
 
 ])
@@ -114,7 +129,9 @@ app.layout = html.Div([
     Input('seasons_column', 'value'))
 
 def update_graph(yaxis_column, seasons_column):
-    # create the graph
+    # creates the graph that can plot all the variables
+    #         yaxis_column: the name of the column name selected by to user
+    #         seasons_column: season data group selected for the user
 
     # filter season
     dff=df[df['Season']==seasons_column]
@@ -136,7 +153,8 @@ def update_graph(yaxis_column, seasons_column):
     Input('seasons_column', 'value'))
 
 def update_graph(seasons_column):
-    # create the graph
+    # creates the max and min temperature plot from of Block 910 station data
+    #         seasons_column: season data group selected for the user
 
     # filter season
     seasonDF = df[df['Season'] == seasons_column]
@@ -186,6 +204,23 @@ def update_graph(seasons_column):
                       font_color='#000000',
                       font_family='Old Standard TT')
     return fig
+
+# table with the missing data count
+@app.callback(
+    Output('table_missing_val', 'data'),
+    Input('seasons_column', 'value'))
+
+def tableFilter(seasons_column):
+    # creates a table that contains the summary of the missing data values
+    #            seasons_column: season data group selected for the user
+
+    # filter season
+    dff = df[df['Season'] == seasons_column]
+
+    # get the missing values summary dataframe using the count_missing_values( )function
+    sum_missingDF = functions.count_missing_values(dff)
+
+    return sum_missingDF.to_dict('records')
 
 if __name__ == '__main__':
     app.run_server(debug=True)

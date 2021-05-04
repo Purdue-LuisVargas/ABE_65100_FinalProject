@@ -1,10 +1,15 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+'''
+Created on Aplil 2021
+@author: luis vargas rojas (lvargasr@purdue.edu)
+Spring 2021 ABE 65100 - Final project
+'''
+# Executes the process of data extraction of weather data from files located in a Dropbox directory
 
-from airflow import DAG
-from airflow.operators.python import PythonOperator
 import dropbox
 from io import *
 import json
-import datetime
 import os
 
 # import the functions file
@@ -13,27 +18,12 @@ file = 'functions.py'
 sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
 import functions
 
-# DAG default args
-default_args = {
-    'owner': 'Luis Vargas',
-    'start_date': datetime.datetime.now(),
-    'schedule_interval': '@daily',
-    #'retries': 1,
-    'email': ['lvargasr@purdue.edu']
-}
+def extract_weather_data(ACCESS_TOKEN):
+    '''Get the raw files from the Dropbox directory and transform them in to a dataframe, and move the files to processed files directory.
+    Resulting file is stored in Dropbox.
+        ACCESS_TOKEN: Dropbox token'''
 
-## Extract task
-def extract_weather_data():
-    # In this function all the steps of the extraction process are declared
-    # Get the raw files from the Dropbox directory and transform them in to a dataframe, and move the files to processed files directory
-
-    # read from json file the Token for accessing Dropbox files
-    file = 'config_file.json'
-    cwd = os.path.dirname(os.path.abspath(__file__))
-    path_file_json = cwd + '/' + file
-    ACCESS_TOKEN = json.load(open(path_file_json))['tkn']
-
-    # init the dropbox object
+    # start the dropbox object
     dbx = dropbox.Dropbox(ACCESS_TOKEN)
 
     # directory of the files to open
@@ -87,15 +77,12 @@ def extract_weather_data():
 
         print('There are not files to read in this directory')
 
-# Transform task
-def transform_weather_data():
-    # In this function all the steps of the transformation process are declared
 
-    # read from json file the Token for accessing Dropbox files
-    file = 'config_file.json'
-    cwd = os.path.dirname(os.path.abspath(__file__))
-    path_file_json = cwd + '/' + file
-    ACCESS_TOKEN = json.load(open(path_file_json))['tkn']
+def transform_weather_data(ACCESS_TOKEN):
+    '''In this function all the steps of the transformation process are declared.
+    Fill BLOCK 910 (CIANO) station missing data with data from the the BLOCK 1101 station.
+    After data kep only the BLOCK 1101 station data on the resulting data frame. Data are stored in Dropbox.
+         ACCESS_TOKEN: Dropbox token '''
 
     # init the dropbox object
     dbx = dropbox.Dropbox(ACCESS_TOKEN)
@@ -105,7 +92,6 @@ def transform_weather_data():
 
     # get the dataframe from dropbox and transform the data into daily metrics
     dayDataDF = functions.metrics_weather(ACCESS_TOKEN, weather_directory_temp)
-
 
     # filter season
     seasons_column = 'Winter_2020-2021'
@@ -148,21 +134,16 @@ def transform_weather_data():
         functions.write_weater_temp_file_dropbox(ACCESS_TOKEN, stationDF_910, file_path)
 
 
-# define the DAG
-dag = DAG('etl_weather', catchup=False, default_args=default_args)
+if __name__ == '__main__':
 
-# declare the tasks
-Extract_weather_data_task = PythonOperator(
-    task_id='Extract_weather_data',
-    python_callable = extract_weather_data,
-    dag = dag
-)
+    # read from json file the Token for accessing Dropbox files
+    file = 'config_file.json'
+    cwd = os.path.dirname(os.path.abspath(__file__))
+    path_file_json = cwd + '/' + file
+    ACCESS_TOKEN = json.load(open(path_file_json))['tkn']
 
-transform_weather_data_task = PythonOperator(
-    task_id='transform_weather_data',
-    python_callable = transform_weather_data,
-    dag = dag
-)
+    # run the extract process
+    extract_weather_data(ACCESS_TOKEN)
 
-# Define the order in which the tasks will be executed
-Extract_weather_data_task >> transform_weather_data_task
+    # run the transform process
+    transform_weather_data(ACCESS_TOKEN)
