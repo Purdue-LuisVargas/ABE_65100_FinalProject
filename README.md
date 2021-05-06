@@ -17,4 +17,4 @@ This proccess could be perform wheater using an Arflow DAG (*main.py*) or with t
     
 ### Data quality checking methods and Data presentation 
 
-The graphical data quality checking and the graphical analysis are performed using a dashboard application. Running them requires the following Python libraries: *dash*, *plotly*, *pandas *, and *json*. The *graphs_weather_cleanDF.py* executes the graphical data quality checking app while *graphs_weather_rawDF.py* runs the visual analysis. Once the app script is executed, the dashboard is visualized at http://127.0.0.1:8050/. These 
+The graphical data quality checking and the graphical analysis are performed using a dashboard application. Running them requires the following Python libraries: *dash*, *plotly*, *pandas *, and *json*. The *graphs_weather_cleanDF.py* executes the graphical data quality checking app while *graphs_weather_rawDF.py* runs the visual analysis. Once the app script is executed, the dashboard is visualized at http://127.0.0.1:8050/.

@@ -15,6 +15,8 @@ import dash_html_components as html
 from dash.dependencies import Input, Output
 import plotly.express as px
 import dash_table
+from datetime import date, timedelta
+import datetime
 
 import pandas as pd
 import json
@@ -81,6 +83,30 @@ app.layout = html.Div([
             id = 'variables-graphic'
         )
     ), style={'width': '70%', 'padding': '0px 20px 20px 20px'}),
+
+    # show dates select botton
+    html.Div(["Select the date range",
+          dcc.DatePickerRange(
+              id='date_range',
+              min_date_allowed=df.index.min(),
+              max_date_allowed=df.index.max(),
+              start_date=datetime.datetime.strptime(df.index.min(), '%Y-%m-%d') + pd.DateOffset(days=120),
+              end_date=datetime.datetime.strptime(df.index.min(), '%Y-%m-%d') + pd.DateOffset(days=130)
+          ),
+        ],style={'width': '30%', 'display': 'inline-block', 'padding': '0px 20px 0px 50px'}),
+
+    # Show the imput button for the label
+    html.Div(['Write the text for label: ',
+          dcc.Input(id='input1', type='text', value='Heading')
+    ],style={'width': '18%', 'display': 'inline-block'}),
+
+    html.Div(['Low Temperature: ',
+          dcc.Input(id='input2', type='number', value=4)
+    ],style={'width': '18%', 'display': 'inline-block'}),
+
+    html.Div(['high Temperature: ',
+          dcc.Input(id='input3', type='number', value=31)
+    ],style={'width': '18%', 'display': 'inline-block'}),
 
     # Show the max and min temperature plot from of Block 910 station data
     html.Div([
@@ -150,9 +176,14 @@ def update_graph(yaxis_column, seasons_column):
 # Min and max temperature graph BLOCK 910 (CIANO)
 @app.callback(
     Output('temperature-910', 'figure'),
-    Input('seasons_column', 'value'))
+    Input('seasons_column', 'value'),
+    [dash.dependencies.Input('date_range', 'start_date'),
+        dash.dependencies.Input('date_range', 'end_date')],
+    Input("input1", "value"),
+    Input("input2", "value"),
+    Input("input3", "value"))
 
-def update_graph(seasons_column):
+def update_graph(seasons_column, start_date, end_date, input1, input2, input3):
     # creates the max and min temperature plot from of Block 910 station data
     #         seasons_column: season data group selected for the user
 
@@ -166,9 +197,28 @@ def update_graph(seasons_column):
 
     dff = pd.melt(sdf, ignore_index=False)
 
+    # create the plot
     fig = px.line(dff, x=dff.index, y=dff.iloc[:,1], color=dff.iloc[:,0],
                   color_discrete_sequence=['firebrick', 'darkslategrey'],
                   labels={"color": "Group"}
+                  )
+    # add the vertical lines
+    fig.add_vrect(x0=start_date, x1=end_date,
+                  annotation_text=input1, annotation_position="top left",
+                  fillcolor="green", opacity=0.25, line_width=0)
+
+    # add the low values horizontal line
+    fig.add_hline(y=input2, line_dash="dot",
+                  annotation_text="Low critical value",
+                  annotation_position="bottom right",
+                  annotation_font_size=20
+                  )
+
+    # add the high values horizontal line
+    fig.add_hline(y=input3, line_dash="dot",
+                  annotation_text="High critical value",
+                  annotation_position="top right",
+                  annotation_font_size=20,
                   )
 
     # strip down the rest of the plot
@@ -178,7 +228,10 @@ def update_graph(seasons_column):
                       plot_bgcolor='lavender',
                       font_size=20,
                       font_color='#000000',
-                      font_family='Old Standard TT')
+                      font_family='Old Standard TT'
+                      )
+
+    
 
     return fig
 
