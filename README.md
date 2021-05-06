@@ -1,4 +1,4 @@
-### Data flow for testing remote-sensed data in crop simulations with the view to increase general availability and accessibility of inputs to crop models and boost scale-out
+## Data flow for testing remote-sensed data in crop simulations with the view to increase general availability and accessibility of inputs to crop models and boost scale-out
 
 This weather data flow process was developed using Python. It involves three main steps: data preparation, data quality checking, and data presentation.
 
@@ -33,7 +33,7 @@ The graphical data quality checking and the graphical analysis are performed usi
 
 After running the app script, the dashboard is visualized at http://127.0.0.1:8050/. These scripts requiere the *functions.py* and the *config_file.json* files.
 
-### Running weather data flow process summary steps
+## Running weather data flow process (summary steps)
 
 1. Open a Dropbox app and create the directories that are specified in the before start instructions
 
