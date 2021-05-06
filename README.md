@@ -2,7 +2,9 @@
 
 This weather data flow process was developed using Python. It involves three main steps: data preparation, data quality checking, and data presentation.
 
-To run this code, you need to create a [Dropbox app](https://www.dropbox.com/developers/apps) under your Dropbox account. Follow the [Dropbox documentation](https://www.dropbox.com/developers/documentation/python#tutorial). Write the token on the key *tkn* into the config_file.json file. The Dropbox app directory must have the four directories specified in the *config_file.json file*: */raw_data/weather_raw*, */data_processed/weather_processed*, */data_temp/weather_temp*, */clean_data/weather_clean*. Copy the weather data files into the *weather_raw* Dropbox directory. 
+To run this code, you need to create a [Dropbox app](https://www.dropbox.com/developers/apps) under your Dropbox account. Follow the [Dropbox documentation](https://www.dropbox.com/developers/documentation/python#tutorial). Write the token on the key *tkn* into the config_file.json file. The Dropbox app directory must have the four directories specified in the *config_file.json file*: */raw_data/weather_raw*, */data_processed/weather_processed*, */data_temp/weather_temp*, */clean_data/weather_clean*. 
+**Copy the weather data files into the *weather_raw* Dropbox directory. The name of the files does not matter for this process since the functions read all the comma-separated values (CSV) files**. 
+The names of the files consisted of the date and the hour when they were downloaded, and there is no identification for the station name because this information is stated in a column of each row. 
        
 
 ### Data preparation 
