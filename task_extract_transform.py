@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 '''
-Created on Aplil 2021
+Created on April 2021
 @author: luis vargas rojas (lvargasr@purdue.edu)
 Spring 2021 ABE 65100 - Final project
 '''
@@ -18,7 +18,7 @@ file = 'functions.py'
 sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
 import functions
 
-def extract_weather_data(ACCESS_TOKEN):
+def extract_weather_data(ACCESS_TOKEN, path_file_json):
     '''Get the raw files from the Dropbox directory and transform them in to a dataframe, and move the files to processed files directory.
     Resulting file is stored in Dropbox.
         ACCESS_TOKEN: Dropbox token'''
@@ -78,7 +78,7 @@ def extract_weather_data(ACCESS_TOKEN):
         print('There are not files to read in this directory')
 
 
-def transform_weather_data(ACCESS_TOKEN):
+def transform_weather_data(ACCESS_TOKEN, path_file_json):
     '''In this function all the steps of the transformation process are declared.
     Fill BLOCK 910 (CIANO) station missing data with data from the the BLOCK 1101 station.
     After data kep only the BLOCK 1101 station data on the resulting data frame. Data are stored in Dropbox.
@@ -143,7 +143,7 @@ if __name__ == '__main__':
     ACCESS_TOKEN = json.load(open(path_file_json))['tkn']
 
     # run the extract process
-    extract_weather_data(ACCESS_TOKEN)
+    extract_weather_data(ACCESS_TOKEN, path_file_json)
 
     # run the transform process
-    transform_weather_data(ACCESS_TOKEN)
+    transform_weather_data(ACCESS_TOKEN, path_file_json)
